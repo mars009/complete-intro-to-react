@@ -3,18 +3,36 @@ import preload from '../public/data.json'
 import ShowCard from './ShowCard'
 
 const Search = React.createClass({
-
-    render() {
-        return (
+  getInitialState () {
+    return {
+      searchTerm: ''
+    }
+  },
+  handleSearchTermChange (event) {
+    this.setState({searchTerm: event.target.value})
+  },
+  render () {
+    return (
             <div className='search'>
-                {preload.shows.map((show) => {
-                    return (
-                       <ShowCard key={show.imdbID} {...show}/>
-                    )
-                })}                
+                <header>
+                    <h1>svideo</h1>
+                    <input onChange={this.handleSearchTermChange} value={this.state.searchTerm} type='text' placeholder='Search' />
+                </header>
+                <div>
+                    {preload.shows
+                        .filter(show => {
+                            // If you find the search term within the title or the description then let the show through
+                          return `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+                        })
+                        .map((show) => {
+                          return (
+                        <ShowCard key={show.imdbID} {...show} />
+                        )
+                        })}
+                </div>
             </div>
         )
-    }
+  }
 })
 
 export default Search
