@@ -10,6 +10,11 @@ module.exports = {
         path: path.join(__dirname, '/public'),
         filename: 'bundle.js'
     },
+    devServer: {
+        // Identifies the directory where the src files live
+        publicPath: '/public/',
+        port: 3000
+    },
     // Progression extension webpack will follow when doing "import" 
     resolve: {
         extensions: ['.js', '.json']
@@ -21,6 +26,14 @@ module.exports = {
     },
     module: {
         rules: [{
+                // Flags that this loader should be ran before anything else. This is what used to be
+                // the "preloader" in webpack 1...so this is webpack v2 syntax
+                enforce: 'pre',
+                test: /\.js$/,
+                loader: 'eslint-loader',
+                exclude: '/node_modules'
+            },
+            {
                 include: path.resolve(__dirname, 'js'),
                 test: /\.js$/,
                 loader: 'babel-loader'

@@ -1,0 +1,4 @@
+// eslintrc.json both needed to configure eslint and for webpack to do its work when using the 'eslint-loader'
+{
+    "extends": ["standard", "standard-react"]
+}
