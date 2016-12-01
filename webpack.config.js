@@ -13,6 +13,8 @@ module.exports = {
     devServer: {
         // Identifies the directory where the src files live
         publicPath: '/public/',
+        // Re-route 404s to home pae
+        historyApiFallback: true,
         port: 3000
     },
     // Progression extension webpack will follow when doing "import" 
@@ -32,6 +34,11 @@ module.exports = {
                 test: /\.js$/,
                 loader: 'eslint-loader',
                 exclude: '/node_modules'
+            },
+            {
+                // Allows importing json files from within your js
+                test: /\.json$/,
+                loader: 'json-loader'
             },
             {
                 include: path.resolve(__dirname, 'js'),
