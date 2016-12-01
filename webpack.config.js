@@ -21,9 +21,24 @@ module.exports = {
     },
     module: {
         rules: [{
-            include: path.resolve(__dirname, 'js'),
-            test: /\.js$/,
-            loader: 'babel-loader'
-        }]
+                include: path.resolve(__dirname, 'js'),
+                test: /\.js$/,
+                loader: 'babel-loader'
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    // Injects styles into your bundle
+                    'style-loader',
+                    { // We are passing an object for 'css-loader' since we are doing some config                      
+                        loader: 'css-loader',
+                        options: {
+                            // tells webpack to not inline images
+                            url: false
+                        }
+                    }
+                ]
+            }
+        ]
     }
 }
