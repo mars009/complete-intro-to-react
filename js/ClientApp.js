@@ -2,20 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MyTitle from './MyTitle';
 
-var div = React.DOM.div
-
 var MyTitleFactory = React.createFactory(MyTitle)
 
 var MyFirstComponent = React.createClass({
     render: function() {
         return (
-            div(null,
-                MyTitleFactory({ title: 'props are the best', color: 'peru' }),
-                MyTitleFactory({ title: 'semicolons are the worst', color: 'mediumaquamarine' }),
-                MyTitleFactory({ title: 'jklol its okay if you like semicolons', color: 'rebeccapurple' }),
-                MyTitleFactory({ title: 'im out of ideas', color: 'dodgerblue' }),
-                MyTitleFactory({ title: 'papayawhip FTW', color: 'papayawhip' })
-            )
+           <div>
+            <MyTitle title='props are cool' color='rebeccapurple'/>
+            <MyTitle title='jsx is cool' color='tomato'/>
+            <MyTitle title='much wow' color='papayawhip'/>
+            <MyTitle title='another line' color='mediumaquamarine'/>
+           </div>
         )
     }
 })
