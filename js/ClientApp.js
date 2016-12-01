@@ -1,21 +1,25 @@
 import React from 'react'
 import { render } from 'react-dom'
-import '../public/normalize.css';
+import { HashRouter, Match } from 'react-router'
+import Landing from './Landing'
+import Search from './Search'
+import '../public/normalize.css'
 import '../public/style.css'
 
 const App = React.createClass({
     render () {
-        return ( 
-            <div className = 'app'>
-                <div className='landing'>
-
-                    <h1>svideo</h1>
-                    <input type='text' placeholder='Search'/>
-                    <a>or Browse All</a>
+        return (
+            // HashRouter & Match are a higher order component (aka behaviour order component),
+            // which encapsulate content and don't have their own display/view 
+            // ~ "exactly" prevents fuzzy matching and sets it so that the match on the pattern has to be exact
+            <HashRouter>
+                <div className = 'app'>                                         
+                    <Match exactly pattern='/' component={Landing}/>
+                    <Match pattern='/search' component={Search}/>
                 </div>
-             </div>
+            </HashRouter>
         )
     }
 })
 
-render(<App/>, document.getElementById('app'));
+render(<App/>, document.getElementById('app'))

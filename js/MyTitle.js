@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 
 var MyTitle = React.createClass({
     render: function() {
