@@ -26,9 +26,10 @@ const Search = React.createClass({
                         })
                         .map((show) => {
                           return (
-                        <ShowCard key={show.imdbID} {...show} />
-                        )
-                        })}
+                            <ShowCard key={show.imdbID} {...show} />
+                          )
+                        })
+                    }
                 </div>
             </div>
         )
