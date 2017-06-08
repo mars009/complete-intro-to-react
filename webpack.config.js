@@ -15,7 +15,11 @@ module.exports = {
   // Adding a dev server to serve our static resources
   devServer: {
     // The path we anticipate our bundled being served from in our server
-    publicPath: '/public'
+    publicPath: '/public',
+    // Tells the webapack dev server that if it doesn't recognize something to just forward it along to the client so it can handle it.
+    // In other words, the client will worry about it, I will not. This is what allows 'BrowserRouter' to work since the dev
+    // server will just reply with index.html and our client will take over from there, definetely not what you will do in prod
+    historyApiFallback: true
   },
   // Extensions order which will be used to resolve require/imports
   resolve: {
