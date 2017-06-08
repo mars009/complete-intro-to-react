@@ -26,6 +26,14 @@ module.exports = {
   module: {
     // Rules that webpack will use to apply loaders
     rules: [
+      // eslint rule needs to be before the babel-loader
+      {
+        // 'pre' ensures that our eslint-loader runs before babel-loader
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/
+      },
       {
         // If the test passes then the loader(s) will be used against the file
         test: /\.jsx?$/,
