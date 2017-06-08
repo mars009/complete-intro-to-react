@@ -12,6 +12,11 @@ module.exports = {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
   },
+  // Adding a dev server to serve our static resources
+  devServer: {
+    // The path we anticipate our bundled being served from in our server
+    publicPath: '/public'
+  },
   // Extensions order which will be used to resolve require/imports
   resolve: {
     extensions: ['.js', '.jsx', '.json']
