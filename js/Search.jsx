@@ -26,7 +26,14 @@ class Search extends Component {
           <input type="text" placeholder="text" value={this.state.searchTerm} onChange={this.handleSearchTermChange} />
         </header>
         <div>
-          {preload.shows.map(show => <ShowCard key={show.imdbID} {...show} />)}
+          {preload.shows
+            /* Filtering out any shows that don't contain the searchTerm in the title or description
+            ~ Using >= 0 so the empty string will match all the titles/descriptions */
+            .filter(
+              show =>
+                `${show.title} ${show.description}`.toUpperCase().indexOf(this.state.searchTerm.toUpperCase()) >= 0
+            )
+            .map(show => <ShowCard key={show.imdbID} {...show} />)}
         </div>
       </div>
     );
