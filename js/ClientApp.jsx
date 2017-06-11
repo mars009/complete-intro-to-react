@@ -1,30 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
-// Importing BrowserRouter & Route
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Landing from './Landing';
-import Search from './Search';
+import App from './App';
 
-const FourOhFour = () => <h1>404 oh my!</h1>;
+// We create a renderApp so we can use it for both HMR and if HMR is off, then we just call
+// it on the first render.
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
 
-/* Setting BrowserRouter as the top level item of our App. BrowserRouter is a higher order component, in that it doesn't
-   render itself anything out. What it does is do the routing & tell it what markup to render.
-   It introduces and encapsulates behavior (the routing), but doesn't encapsulate style or markup
-   */
-const App = () => (
-  <BrowserRouter>
-    <div className="app">
-      {/* The Switch Component renders exactly one component. So it will go in order trying to find the match
-        and if nothing else matches it will return the Route for FourOhFour */}
-      <Switch>
-        {/* We have one route inside our Router, setting it to have exactly the path "/" so if this doesn'this
-        match then the route will not be hit. component points to the Component that needs to be rendered */}
-        <Route exact path="/" component={Landing} />
-        <Route path="/search" component={Search} />
-        <Route component={FourOhFour} />
-      </Switch>
-    </div>
-  </BrowserRouter>
-);
+renderApp();
 
-render(<App />, document.getElementById('app'));
+// If app has HMR on for this particular build. 'module' is given by webpack
+if (module.hot) {
+  // Then everytime App changes this function will be called. So if <App> changes the whole
+  // app will be replaced. This is needed when using HMR and only for the top level component
+  module.hot.accept('./App', () => {
+    renderApp();
+  });
+}
