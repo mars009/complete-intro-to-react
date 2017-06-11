@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import preload from '../data.json';
 import ShowCard from './ShowCard';
 
 // ES6 Class Component. All Component classes must have a render method that returns markup
@@ -10,6 +9,11 @@ class Search extends Component {
   // a constructor and can just declare properties such as the state @ the class level
   state = {
     searchTerm: ''
+  };
+
+  // We define our prop types for Flow. In this case shows is an Array of any
+  props: {
+    shows: Array<Show>
   };
 
   // We need to bind the handler's "context" to be "Search", so whenever 'handleSearchTermChange'
@@ -28,7 +32,7 @@ class Search extends Component {
           <input type="text" placeholder="text" value={this.state.searchTerm} onChange={this.handleSearchTermChange} />
         </header>
         <div>
-          {preload.shows
+          {this.props.shows
             /* Filtering out any shows that don't contain the searchTerm in the title or description
             ~ Using >= 0 so the empty string will match all the titles/descriptions */
             .filter(
