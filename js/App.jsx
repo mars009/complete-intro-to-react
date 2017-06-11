@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 // Importing BrowserRouter & Route
 import { BrowserRouter, Route, Switch } from 'react-router-dom';

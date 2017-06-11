@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component } from 'react';
 import preload from '../data.json';
 import ShowCard from './ShowCard';
@@ -14,7 +16,7 @@ class Search extends Component {
   // gets called it will be using the right context. While this is usually done in the constructor
   // the 'transform-class-properties' Babel transform leverages a Stage 2 proposal so you can write
   // your function handlers like the one below and the Context will point to the Class
-  handleSearchTermChange = event => {
+  handleSearchTermChange = (event: SyntheticKeyboardEvent & { target: HTMLInputElement }) => {
     this.setState({ searchTerm: event.target.value });
   };
 

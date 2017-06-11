@@ -1,3 +1,4 @@
+/* @flow */
 import React from 'react';
 import Search from '../Search';
 import preload from '../../data.json';
