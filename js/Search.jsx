@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import ShowCard from './ShowCard';
+import Header from './Header';
 
 // ES6 Class Component. All Component classes must have a render method that returns markup
 class Search extends Component {
@@ -27,10 +28,7 @@ class Search extends Component {
   render() {
     return (
       <div className="search">
-        <header>
-          <h1>svideo</h1>
-          <input type="text" placeholder="text" value={this.state.searchTerm} onChange={this.handleSearchTermChange} />
-        </header>
+        <Header searchTerm={this.state.searchTerm} showSearch handleSearchTermChange={this.handleSearchTermChange} />
         <div>
           {this.props.shows
             /* Filtering out any shows that don't contain the searchTerm in the title or description
