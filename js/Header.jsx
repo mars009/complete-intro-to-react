@@ -2,7 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Note how we are using the '?' to mark our types that can be null
 const Header = (props: { showSearch?: boolean, handleSearchTermChange?: Function, searchTerm?: string }) => {
+  // utilSpace will point to an input or a back button depending on the prop that is passed to this component
   let utilSpace;
   if (props.showSearch) {
     utilSpace = (
